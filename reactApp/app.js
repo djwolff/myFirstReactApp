@@ -5,14 +5,37 @@ import ReactDOM from 'react-dom';
 
 var dummyData = ["Go to School", "Go to Mariachi Band", "Do Homework", "Eat Dinner", "Go to Design", "Sleep"]
 
+class ToDo extends React.Component {
+  render() {
+    return (
+      <div>
+        <li key={this.props.task}>
+          <button type="button">X</button>
+          {' '}{this.props.task}
+        </li>
+      </div>
+    )
+  }
+}
+
+class TodoApp extends React.Component {
+  render() {
+    return (
+      <div>
+        <input type="text" />
+        <input type="submit" value="Add Todo" />
+      </div>
+    )
+  }
+}
+
 class ToDoList extends React.Component {
   render() {
     return (
       <div>
+        <TodoApp />
         <ul>
-          {this.props.data.map((todo) => <li key={todo}>
-            <button type="button">X</button>
-            {' '}{todo}</li>)}
+          {this.props.data.map((todo) => <ToDo task={todo} />)}
         </ul>
       </div>
     )
@@ -20,4 +43,4 @@ class ToDoList extends React.Component {
 }
 
 ReactDOM.render(<ToDoList data = {dummyData}/>,
-   document.getElementById('root'));
+  document.getElementById('root'));
